@@ -153,6 +153,7 @@ def books_edit(bid):
     locations = db.execute("SELECT * FROM Locations").fetchall()
     return render_template('books/form.html', book=book, genres=genres, locations=locations)
 
+#trxns and isolation
 @app.route('/books/<int:bid>/delete', methods=['GET', 'POST'])
 def books_delete(bid):
     db = get_db()
