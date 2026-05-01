@@ -115,7 +115,7 @@ def books_new():
         genre_id = request.form['genre_id']
         location_id = request.form['location_id']
         copies = int(request.form['copies'])
-
+# SQL injection protection
         db.execute("""
             INSERT INTO Books (title, author, isbn, gid, lid, copies, available)
             VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -173,7 +173,7 @@ def report_borrows():
     genres = db.execute("SELECT * FROM Genres").fetchall()
     locations = db.execute("SELECT * FROM Locations").fetchall()
     filters, params = [], []
-
+#SQL injection protection
     if request.args.get('from_date'):
         filters.append("borrow_date >= ?")
         params.append(request.args['from_date'])
