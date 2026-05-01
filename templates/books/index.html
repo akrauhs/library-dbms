@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><title>Library Books</title></head>
+        <body>
+            <a href="/books/new">Add New Book</a> | <a href="/reports/borrows">Borrowing Report</a>
+            <h1>Library Books</h1>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}{% for message in messages %}<p>{{ message }}</p>{% endfor %}{% endif %}
+            {% endwith %}
+
+            <table border="1" cellpadding="5" cellspacing="0">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th>Genre</th>
+                    <th>Location</th>
+                    <th>Total Copies</th>
+                    <th>Available Copies</th>
+                    <th>Actions</th>
+                </tr>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.bid }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.isbn }}</td>
+                    <td>{{ book.genre }}</td>
+                    <td>{{ book.location }}</td>
+                    <td>{{ book.copies }}</td>
+                    <td>{{ book.available }}</td>
+                    <td><a href="/books/{{ book.bid }}/edit">Edit</a> | <a href="/books/{{ book.bid }}/delete">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </body>
+</html>

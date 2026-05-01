@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><title>Confirm Delete Book</title></head>
+    <body>
+        <h1>Confirm Delete Book</h1>
+        <p>Are you sure you want to delete <strong> "{{ book.title }}"</strong>?</p>
+        <form method="post" action="/books/{{ book.bid }}/delete">
+            <button type="submit">Yes, Delete</button>
+            <a href="/books">Cancel</a>
+        </form>
+    </body>
+</html>

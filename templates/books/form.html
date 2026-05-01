@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <head><title>{{"Edit Book" if book else "Add Book"}}</title></head>
+    <body>
+        <h1>{{"Edit Book" if book else "Add Book"}}</h1>
+        <form method="post">
+            <p>Title: <input type="text" name="title" required value="{{ book.title if book else '' }}"></p>
+            <p>Author: <input type="text" name="author" required value="{{ book.author if book else '' }}"></p>
+            <p>ISBN: <input type="text" name="isbn" value="{{ book.isbn if book else '' }}"></p>
+            <p>Genre:
+                <select name="genre_id" required>
+                    {% for genre in genres %}
+                        <option value="{{ genre.gid }}" {{ "selected" if book and book.gid == genre.gid else "" }}>{{ genre.name }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>Location:
+                <select name="location_id" required>
+                    {% for location in locations %}
+                        <option value="{{ location.lid }}" {{ "selected" if book and book.lid == location.lid else "" }}>{{ location.name }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>Copies: <input type="number" name="copies" min="1" required value="{{ book.copies if book else '1' }}"></p>
+            <button type="submit">{{"Update Book" if book else "Add Book"}}</button>
+            <a href="/books">Cancel</a>
+        </form>
+    </body>
+</html>
